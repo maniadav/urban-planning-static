@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master  # Include both main and master for compatibility
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Install and Build 🔧
+        run: |
+          # No build step required for this static site
+          # If you add any build steps in the future, add them here
+          
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .  # Deploy everything in the repository
+          # Optional settings:
+          # cname: your-custom-domain.com  # Uncomment and modify if you have a custom domain
+          # user_name: 'GitHub Actions'
+          # user_email: 'github-actions@github.com'
+          # commit_message: 'Deploy: {{sha}}'
